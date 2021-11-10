@@ -3,6 +3,24 @@ const input = document.getElementById("input");
 
 //TODO: crea una funcion que elimine de pantalla la columna que corresponda con el indice introducido en deleteInput
 // si pongo un id que no existe debe mostrar un error
+function deleteThisElement() {
+  const idx = parseInt(document.getElementById("deleteInput").value); // Input value
+  const parent = document.getElementById("container"); // Parent element
+  const childs = parent.querySelectorAll(".col"); // Filtered parent's childs list
+  // If idx in the range of childs (counting base 1) delete child #idx
+  // Print a error if not.
+  if (idx > 0 && idx <= childs.length) {
+    parent.removeChild(childs[idx - 1]);
+  } else {
+    console.error(
+      `You must to provide a number from 1 tp ${childs.length}. You have provided ${idx}.`
+    );
+  }
+}
+
+document
+  .querySelector("#deleteThisButton")
+  .addEventListener("click", deleteThisElement);
 
 document
   .querySelector("#myForm")
@@ -19,10 +37,7 @@ document.getElementById("button").addEventListener("click", () => {
 });
 
 document.getElementById("deleteButton").addEventListener("click", () => {
-  // Obtenemos la lista actualizada de elementos susceptibles de ser borrados
-  // y comprobamos que existan elementos a borrar.
-  // Llamamos al querySelectorAll desde contaniners para hacerlo más selectivo
-  // y minimizar el recorrido del DOM.
+  // Get updated child list. Calling querySelectorAll from parent reduces DOM iteration.
   let columnas = container.querySelectorAll(".col");
   if (columnas.length > 0) {
     container.removeChild(columnas[columnas.length - 1]);
