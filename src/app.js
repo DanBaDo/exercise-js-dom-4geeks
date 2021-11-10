@@ -34,23 +34,15 @@ function setTextContent(nodeArray, string) {
   }
 }
 
-document
-  .querySelector("#deleteThisButton")
-  .addEventListener("click", deleteThisElement);
-
-document
-  .querySelector("#myForm")
-  .addEventListener("submit", ev => ev.preventDefault());
-
-document.getElementById("button").addEventListener("click", () => {
+function newChild() {
   const hLevel = Math.floor(Math.random() * 6 + 1);
   let div = document.createElement("div");
   div.setAttribute("class", "col");
   div.innerHTML = `<h${hLevel}>${input.value.toUpperCase()}</h${hLevel}>`;
   container.appendChild(div);
-});
+}
 
-document.getElementById("deleteButton").addEventListener("click", () => {
+function removeLastChild() {
   // Get updated child list. Calling querySelectorAll from parent reduces DOM iteration.
   let columnas = container.querySelectorAll(".col");
   if (columnas.length > 0) {
@@ -58,7 +50,21 @@ document.getElementById("deleteButton").addEventListener("click", () => {
   } else {
     console.log("No hay nadie a quien eliminar");
   }
-});
+}
+
+document
+  .querySelector("#myForm")
+  .addEventListener("submit", ev => ev.preventDefault());
+
+document
+  .querySelector("#deleteThisButton")
+  .addEventListener("click", deleteThisElement);
+
+document.getElementById("button").addEventListener("click", newChild);
+
+document
+  .getElementById("deleteButton")
+  .addEventListener("click", removeLastChild);
 
 input.addEventListener("keyup", ev => {
   if (ev.keyCode == 13) {
