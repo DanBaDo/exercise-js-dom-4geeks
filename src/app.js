@@ -20,12 +20,12 @@ document.getElementById("button").addEventListener("click", () => {
 
 document.getElementById("deleteButton").addEventListener("click", () => {
   //comprobar hijos
-  if (container.childNodes.length > 0) {
+  let columnas = document.querySelectorAll(".col");
+
+  if (columnas.length > 0) {
     //eliminar el ultimo
     //TODO: CREAR LA FUNCIONALIDAD PARA ELIMIANR EL ULTIMO NODO SIN QUE NUNCA DE ERROR
-
-    let columnas = document.querySelectorAll("col");
-    container.removeChild();
+    container.removeChild(columnas[columnas.length - 1]);
   } else {
     console.log("No hay nadie a quien eliminar");
   }
