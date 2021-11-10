@@ -1,18 +1,36 @@
 const container = document.getElementById("container");
 const input = document.getElementById("input");
 
+function showError(msg) {
+  window.alert(msg);
+  console.error(msg);
+}
+
 function deleteThisElement() {
   const idx = parseInt(document.getElementById("deleteInput").value); // Input value
   const parent = document.getElementById("container"); // Parent element
   const childs = parent.querySelectorAll(".col"); // Filtered parent's childs list
-  // If idx in the range of childs (counting base 1) delete child #idx
-  // Print a error if not.
-  if (idx > 0 && idx <= childs.length) {
-    parent.removeChild(childs[idx - 1]);
+  if (childs.length > 0) {
+    if (idx > 0 && idx <= childs.length) {
+      // If idx in the range of childs (counting base 1) delete child #idx
+      // Print a error if not.
+      parent.removeChild(childs[idx - 1]);
+    } else
+      showError(
+        `You must to provide a number from 1 tp ${childs.length}. You have provided ${idx}.`
+      );
+  } else showError("There is no elemets to delete.");
+}
+
+function setTextContent(nodeArray, string) {
+  // Verify arguments
+  if (nodeArray instanceof NodeList && typeof string === "string") {
+    for (let item of nodeArray.values()) {
+      // Verify HTML has .innerText property and set it.
+      if ("innerText" in item) item.innerText = string;
+    }
   } else {
-    const msg = `You must to provide a number from 1 tp ${childs.length}. You have provided ${idx}.`;
-    window.alert(msg);
-    console.error(msg);
+    showError("You must provide a NodeList and a string");
   }
 }
 
@@ -25,7 +43,6 @@ document
   .addEventListener("submit", ev => ev.preventDefault());
 
 document.getElementById("button").addEventListener("click", () => {
-  //crear el elemento
   const hLevel = Math.floor(Math.random() * 6 + 1);
   let div = document.createElement("div");
   div.setAttribute("class", "col");
@@ -43,14 +60,10 @@ document.getElementById("deleteButton").addEventListener("click", () => {
   }
 });
 
-//crear evento
 input.addEventListener("keyup", ev => {
   if (ev.keyCode == 13) {
-    console.log("Estamos cambiando el evento");
-    //TODO: REFACTORIZAR
-    for (let value of container.childNodes) {
-      console.log(value);
-      value.innerHTML = `<h1>${input.value.toUpperCase()}</h1>`;
-    }
+    const text = document.getElementById("input").value;
+    const items = container.querySelectorAll(".col>*:first-child");
+    setTextContent(items, text);
   }
 });
