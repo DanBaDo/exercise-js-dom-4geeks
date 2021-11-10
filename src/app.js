@@ -10,9 +10,9 @@ function deleteThisElement() {
   if (idx > 0 && idx <= childs.length) {
     parent.removeChild(childs[idx - 1]);
   } else {
-    console.error(
-      `You must to provide a number from 1 tp ${childs.length}. You have provided ${idx}.`
-    );
+    const msg = `You must to provide a number from 1 tp ${childs.length}. You have provided ${idx}.`;
+    window.alert(msg);
+    console.error(msg);
   }
 }
 
