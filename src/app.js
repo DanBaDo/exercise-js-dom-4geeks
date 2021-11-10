@@ -8,13 +8,12 @@ function showError(msg) {
 
 function deleteThisElement() {
   const idx = parseInt(document.getElementById("deleteInput").value); // Input value
-  const parent = document.getElementById("container"); // Parent element
-  const childs = parent.querySelectorAll(".col"); // Filtered parent's childs list
+  const childs = container.querySelectorAll(".col"); // Filtered updated parent's childs list
   if (childs.length > 0) {
     if (idx > 0 && idx <= childs.length) {
       // If idx in the range of childs (counting base 1) delete child #idx
       // Print a error if not.
-      parent.removeChild(childs[idx - 1]);
+      container.removeChild(childs[idx - 1]);
     } else
       showError(
         `You must to provide a number from 1 tp ${childs.length}. You have provided ${idx}.`
@@ -48,7 +47,15 @@ function removeLastChild() {
   if (columnas.length > 0) {
     container.removeChild(columnas[columnas.length - 1]);
   } else {
-    console.log("No hay nadie a quien eliminar");
+    showError("No hay nadie a quien eliminar");
+  }
+}
+
+function updateChildsContent(ev) {
+  if (ev.keyCode == 13) {
+    const text = document.getElementById("input").value;
+    const items = container.querySelectorAll(".col>*:first-child");
+    setTextContent(items, text);
   }
 }
 
@@ -66,10 +73,4 @@ document
   .getElementById("deleteButton")
   .addEventListener("click", removeLastChild);
 
-input.addEventListener("keyup", ev => {
-  if (ev.keyCode == 13) {
-    const text = document.getElementById("input").value;
-    const items = container.querySelectorAll(".col>*:first-child");
-    setTextContent(items, text);
-  }
-});
+input.addEventListener("keyup", updateChildsContent);
