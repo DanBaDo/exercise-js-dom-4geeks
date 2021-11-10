@@ -1,7 +1,6 @@
 const container = document.getElementById("container");
 const input = document.getElementById("input");
 
-//TODO: crea una funcion que elimine de pantalla la columna que corresponda con el indice introducido en deleteInput
 // si pongo un id que no existe debe mostrar un error
 function deleteThisElement() {
   const idx = parseInt(document.getElementById("deleteInput").value); // Input value
