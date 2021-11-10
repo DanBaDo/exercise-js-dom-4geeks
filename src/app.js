@@ -19,11 +19,11 @@ document.getElementById("button").addEventListener("click", () => {
 });
 
 document.getElementById("deleteButton").addEventListener("click", () => {
-  //comprobar hijos
-  let columnas = document.querySelectorAll(".col");
-
+  // Obtenemos la lista actualizada de elementos susceptibles de ser borrados
+  // y comprobamos que existan elementos a borrar.
+  // Llamamos al
+  let columnas = container.querySelectorAll(".col");
   if (columnas.length > 0) {
-    //eliminar el ultimo
     //TODO: CREAR LA FUNCIONALIDAD PARA ELIMIANR EL ULTIMO NODO SIN QUE NUNCA DE ERROR
     container.removeChild(columnas[columnas.length - 1]);
   } else {
