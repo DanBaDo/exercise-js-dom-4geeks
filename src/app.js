@@ -21,10 +21,10 @@ document.getElementById("button").addEventListener("click", () => {
 document.getElementById("deleteButton").addEventListener("click", () => {
   // Obtenemos la lista actualizada de elementos susceptibles de ser borrados
   // y comprobamos que existan elementos a borrar.
-  // Llamamos al
+  // Llamamos al querySelectorAll desde contaniners para hacerlo más selectivo
+  // y minimizar el recorrido del DOM.
   let columnas = container.querySelectorAll(".col");
   if (columnas.length > 0) {
-    //TODO: CREAR LA FUNCIONALIDAD PARA ELIMIANR EL ULTIMO NODO SIN QUE NUNCA DE ERROR
     container.removeChild(columnas[columnas.length - 1]);
   } else {
     console.log("No hay nadie a quien eliminar");
