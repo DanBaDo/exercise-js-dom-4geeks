@@ -26,11 +26,12 @@ document
 
 document.getElementById("button").addEventListener("click", () => {
   //crear el elemento
+  const hLevel = Math.floor(Math.random() * 6 + 1);
   let div = document.createElement("div");
   div.setAttribute("class", "col");
 
   //TODO: CREAR UN HN AL AZAR (H1-H2...H6)
-  div.innerHTML = `<h1>${input.value.toUpperCase()}</h1>`;
+  div.innerHTML = `<h${hLevel}>${input.value.toUpperCase()}</h${hLevel}>`;
   container.appendChild(div);
 });
 
