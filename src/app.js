@@ -24,7 +24,7 @@ document.getElementById("deleteButton").addEventListener("click", () => {
   // Llamamos al querySelector desde container porque de este modo es más selectivo
   // y además tiene que explorar una sección menor del DOM.
   let columnas = Array.from(container.childNodes.entries(".col"))
-    .filter(item => item[1].nodeName === "DIV")
+    .filter(item => item[1].tagName === "DIV")
     .map(item => item[1]); // Descarto esta opción. Tanta trasnformación no puede ser buena.
   console.log(columnas);
   if (columnas.length > 0) {
