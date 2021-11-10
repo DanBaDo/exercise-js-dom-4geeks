@@ -1,7 +1,6 @@
 const container = document.getElementById("container");
 const input = document.getElementById("input");
 
-// si pongo un id que no existe debe mostrar un error
 function deleteThisElement() {
   const idx = parseInt(document.getElementById("deleteInput").value); // Input value
   const parent = document.getElementById("container"); // Parent element
