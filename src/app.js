@@ -53,7 +53,7 @@ function removeLastChild() {
 
 function updateChildsContent(ev) {
   if (ev.keyCode == 13) {
-    const text = document.getElementById("input").value;
+    const text = input.value;
     const items = container.querySelectorAll(".col>*:first-child");
     setTextContent(items, text);
   }
